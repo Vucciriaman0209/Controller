@@ -14,7 +14,7 @@
             margin: 0;
             padding: 0;
             overflow: hidden;
-            background: linear-gradient(-45deg, rgb(82, 50, 141), rgba(147, 80, 255, 0.171), #0066ff57, rgba(255, 0, 43, 0.397));
+            background: linear-gradient(-45deg, orange, rgb(82, 140, 255), #e0e0e0, yellow);
             background-size: 400% 400%;
             animation: gradientAnimation 15s ease infinite;
             display: flex;
@@ -58,8 +58,6 @@
         .right-column {
             flex: 1;
             padding: 20px;
-            color: #ffffff;
-
         }
 
         form {
@@ -70,7 +68,7 @@
             display: block;
             margin-bottom: 5px;
             font-size: 18px;
-            color: #ffffff;
+            color: #333;
             text-align: left;
         }
 
@@ -123,6 +121,21 @@
             </form>
         </div>
     </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const form = document.getElementById("registrationForm");
+            const startButton = document.getElementById("startButton");
+
+            form.addEventListener("input", function () {
+                if (form.checkValidity()) {
+                    startButton.disabled = false;
+                } else {
+                    startButton.disabled = true;
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>
