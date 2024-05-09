@@ -183,29 +183,8 @@
         }
 
         startButton.addEventListener('click', function() {
-            const firstName = firstNameInput.value.trim();
-            const lastName = lastNameInput.value.trim();
-            const email = emailInput.value.trim();
-        
-
-            const contactData = {
-                firstName: firstName,
-                lastName: lastName,
-                email: email
-            };
+            window.location.href = 'codicerestart.html';};
         startButton.addEventListener('touchstart', function() {
-            const firstName = firstNameInput.value.trim();
-            const lastName = lastNameInput.value.trim();
-            const email = emailInput.value.trim();
-        
-
-            const contactData = {
-                firstName: firstName,
-                lastName: lastName,
-                email: email
-            };
-        
-            saveToCSV(contactData);
             window.location.href = 'codicerestart.html';
         });
     </script>
