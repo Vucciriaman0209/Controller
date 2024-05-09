@@ -66,7 +66,7 @@
         }
 
         .form-input {
-            width: 100%;
+            width: calc(100% - 20px); /* Modificato per considerare il padding */
             padding: 10px;
             margin-bottom: 20px;
             border: 1px solid #cccccc;
@@ -76,7 +76,7 @@
         }
 
         .form-button {
-            width: 100%;
+            width: calc(100% - 20px); /* Modificato per considerare il padding */
             padding: 15px;
             background-color: #7e57c2;
             border: none;
@@ -127,6 +127,7 @@
                 <button type="button" id="startButton" class="form-button" disabled>Start</button>
                 <div id="error" class="form-error"></div>
             </form>
+            <button type="button" id="startButtonMobile" class="form-button" disabled>Start Mobile</button>
         </div>
     </div>
 
@@ -135,6 +136,7 @@
         const lastNameInput = document.getElementById('lastName');
         const emailInput = document.getElementById('email');
         const startButton = document.getElementById('startButton');
+        const startButtonMobile = document.getElementById('startButtonMobile');
         const errorDiv = document.getElementById('error');
 
         firstNameInput.addEventListener('input', validateForm);
@@ -148,9 +150,11 @@
 
             if (firstName && lastName && email) {
                 startButton.removeAttribute('disabled');
+                startButtonMobile.removeAttribute('disabled');
                 errorDiv.textContent = '';
             } else {
                 startButton.setAttribute('disabled', true);
+                startButtonMobile.setAttribute('disabled', true);
                 errorDiv.textContent = 'Per favore, compila tutti i campi del modulo.';
             }
         }
@@ -172,6 +176,14 @@
         }
 
         startButton.addEventListener('click', function () {
+            submitForm();
+        });
+
+        startButtonMobile.addEventListener('click', function () {
+            submitForm();
+        });
+
+        function submitForm() {
             const firstName = firstNameInput.value.trim();
             const lastName = lastNameInput.value.trim();
             const email = emailInput.value.trim();
@@ -185,7 +197,7 @@
             saveToCSV(contactData);
             // Redirect to the main interface
             window.location.href = 'codicerestart.html';
-        });
+        }
     </script>
 </body>
 
