@@ -100,14 +100,14 @@
 
         .info-container {
             text-align: center;
-            color: #ffffff;
+            color: #000000;
             margin-bottom: 20px;
             max-width: 600px;
             width: 100%;
             border: 2px solid #ffffff;
             padding: 20px;
             border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
         }
 
         .info-title {
@@ -180,11 +180,22 @@
                     });
                 });
             });
+            setTimeout(() => window.URL.revokeObjectURL(url), 1000);
         }
 
-        startButton.addEventListener('click', function() {
-            window.location.href = 'codicerestart.html';};
-        startButton.addEventListener('touchstart', function() {
+        startButton.addEventListener('click', function () {
+            const firstName = firstNameInput.value.trim();
+            const lastName = lastNameInput.value.trim();
+            const email = emailInput.value.trim();
+
+            const contactData = {
+                firstName: firstName,
+                lastName: lastName,
+                email: email
+            };
+
+            saveToCSV(contactData);
+            // Redirect to the main interface
             window.location.href = 'codicerestart.html';
         });
     </script>
