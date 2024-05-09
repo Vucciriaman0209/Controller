@@ -8,223 +8,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Darker+Grotesque:wght@300..900&display=swap" rel="stylesheet">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
     <style>
-        body {
-            font-family: 'Darker Grotesque', sans-serif;
-            margin: 0;
-            padding: 0;
-            overflow: hidden;
-            background: linear-gradient(-45deg, orange, rgb(82, 140, 255), #e0e0e0, yellow);
-            background-size: 400% 400%;
-            animation: gradientAnimation 15s ease infinite;
-        }
-
-        @keyframes gradientAnimation {
-            0% {
-                background-position: 0% 50%;
-            }
-
-            50% {
-                background-position: 100% 50%;
-            }
-
-            100% {
-                background-position: 0% 50%;
-            }
-        }
-
-        .container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-        }
-
-        .buttons-section {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            justify-content: center;
-            margin-bottom: 20px;
-        }
-
-        .button {
-            padding: 10px 20px;
-            font-size: 16px;
-            border: none;
-            background-color: #7e57c2;
-            color: #fff;
-            cursor: pointer;
-            border-radius: 5px;
-            margin-bottom: 20px;
-        }
-
-        .restart-button {
-            padding: 10px 20px;
-            font-size: 16px;
-            border: none;
-            background-color: #7e57c2;
-            color: #fff;
-            cursor: pointer;
-            border-radius: 5px;
-            margin-bottom: 20px;
-        }
-        .back-button {
-            padding: 10px 20px;
-            font-size: 16px;
-            border: none;
-            background-color: #7e57c2;
-            color: #fff;
-            cursor: pointer;
-            border-radius: 5px;
-            margin-bottom: 20px;
-        }
-
-        .sliders-section {
-            display: flex;
-            gap: 20px;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-
-        .switch-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-
-        .label {
-            font-size: 24px;
-            color: #333;
-            margin-top: 10px;
-            font-weight: bold;
-        }
-
-        .switch-slider {
-            position: relative;
-            display: inline-block;
-            width: 60px;
-            height: 34px;
-        }
-
-        .switch-slider input {
-            display: none;
-        }
-
-        .slider {
-            position: absolute;
-            cursor: pointer;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: #7e57c2;
-            transition: .4s;
-            border-radius: 34px;
-        }
-
-        .slider:before {
-            position: absolute;
-            content: "";
-            height: 26px;
-            width: 26px;
-            left: 4px;
-            bottom: 4px;
-            background-color: white;
-            transition: .4s;
-            border-radius: 50%;
-        }
-
-        input:checked+.slider {
-            background-color: #7e57c2;
-        }
-
-        input:focus+.slider {
-            box-shadow: 0 0 1px #7e57c2;
-        }
-
-        input:checked+.slider:before {
-            transform: translateX(26px);
-        }
-
-        .volume-container {
-            display: none;
-            align-items: center;
-            justify-content: center;
-            margin-top: 10px;
-        }
-
-        .volume-slider {
-            width: 200px;
-            margin: 0 10px;
-        }
-
-        .volume-slider input {
-            width: 100%;
-            background: linear-gradient(to right, #7e57c2, #7e57c2);
-            border-radius: 10px;
-            appearance: none;
-        }
-
-        .volume-slider input::-webkit-slider-thumb {
-            background: #7e57c2;
-        }
-
-        .volume-slider input::-moz-range-thumb {
-            background: #7e57c2;
-        }
-
-        .volume-slider input::-ms-thumb {
-            background: #7e57c2;
-        }
-
-        .volume-buttons button {
-            background-color: transparent;
-            border: none;
-            font-size: 24px;
-            cursor: pointer;
-            color: #333;
-            transition: color 0.3s;
-        }
-
-        .volume-buttons button:hover {
-            color: #7e57c2;
-        }
-
-        .prev-next-buttons {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background-color: rgba(126, 87, 194, 0.1);
-            width: 80%;
-            margin-top: 20px;
-            border-radius: 20px;
-            gap: 10%;
-            padding: 3%;
-            margin-bottom: 20px;
-        }
-
-        .prev-next-buttons button {
-            font-size: 18px;
-            border: none;
-            background-color: transparent;
-            cursor: pointer;
-            transition: color 0.3s;
-            border-radius: 20px;
-            padding: 5px 15px;
-        }
-
-        .prev-next-buttons button:hover {
-            color: #7e57c2;
-        }
-
-        .hide {
-            display: none;
-        }
         body {
             font-family: 'Darker Grotesque', sans-serif;
             margin: 0;
@@ -255,6 +40,20 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
+            padding: 0 20px; /* Aggiunto padding laterale */
+        }
+
+        .info-container {
+            text-align: center;
+            color: #000000;
+            margin-bottom: 20px;
+            max-width: 600px;
+            width: 100%;
+            border: 2px solid #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
+            background-color: rgba(255, 255, 255, 0.8); /* Aggiunto sfondo chiaro */
         }
 
         .form-container {
@@ -264,12 +63,6 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             max-width: 400px;
             width: 100%;
-        }
-
-        .form-title {
-            text-align: center;
-            font-size: 24px;
-            margin-bottom: 20px;
         }
 
         .form-input {
@@ -294,19 +87,6 @@
             transition: background-color 0.3s;
         }
 
-        .form-button:hover {
-            background-color: #6a4aad;
-        }
-
-        .form-button:disabled {
-            background-color: #cccccc;
-            cursor: not-allowed;
-        }
-
-        .form-button:focus {
-            outline: none;
-        }
-
         .form-error {
             color: #ff0000;
             font-size: 14px;
@@ -314,28 +94,20 @@
             text-align: center;
         }
 
-        .info-container {
-            text-align: center;
-            color: #000000;
-            margin-bottom: 20px;
-            max-width: 600px;
-            width: 100%;
-            border: 2px solid #ffffff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
-        }
+        /* Media query per dispositivi mobili */
+        @media screen and (max-width: 600px) {
+            .info-container {
+                padding: 10px;
+            }
 
-        .info-title {
-            font-size: 36px;
-            margin-bottom: 10px;
-            line-height: 1.2;
-        }
+            .form-container {
+                padding: 20px;
+            }
 
-        .info-paragraph {
-            font-size: 18px;
-            line-height: 1.4;
-            margin-bottom: 15px;
+            .form-input,
+            .form-button {
+                font-size: 14px;
+            }
         }
     </style>
 </head>
