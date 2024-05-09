@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Darker+Grotesque:wght@300..900&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
     <style>
         body {
@@ -37,156 +38,90 @@
         .container {
             display: flex;
             flex-direction: column;
-            justify-content: center;
             align-items: center;
-            height: 100vh;
-            padding: 0 20px; /* Aggiunto padding laterale */
+            justify-content: center;
+            min-height: 100vh;
         }
 
-        .info-container {
-            text-align: center;
-            color: #000000;
+        .buttons-section {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
             margin-bottom: 20px;
-            max-width: 600px;
-            width: 100%;
-            border: 2px solid #ffffff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
-            background-color: rgba(255, 255, 255, 0.8); /* Aggiunto sfondo chiaro */
         }
 
-        .form-container {
-            background-color: #ffffff;
-            border-radius: 10px;
-            padding: 40px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            max-width: 400px;
-            width: 100%;
-        }
-
-        .form-input {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 20px;
-            border: 1px solid #cccccc;
-            border-radius: 5px;
-            box-sizing: border-box;
+        .button {
+            padding: 10px 20px;
             font-size: 16px;
-        }
-
-        .form-button {
-            width: 100%;
-            padding: 15px;
-            background-color: #7e57c2;
             border: none;
-            color: #ffffff;
-            font-size: 18px;
-            border-radius: 5px;
+            background-color: #7e57c2;
+            color: #fff;
             cursor: pointer;
-            transition: background-color 0.3s;
+            border-radius: 5px;
+            margin-bottom: 20px;
         }
 
-        .form-error {
-            color: #ff0000;
-            font-size: 14px;
-            margin-top: 5px;
-            text-align: center;
+        .restart-button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            background-color: #7e57c2;
+            color: #fff;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .back-button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            background-color: #7e57c2;
+            color: #fff;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-bottom: 20px;
         }
 
-        /* Media query per dispositivi mobili */
-        @media screen and (max-width: 600px) {
-            .info-container {
-                padding: 10px;
-            }
-
-            .form-container {
-                padding: 20px;
-            }
-
-            .form-input,
-            .form-button {
-                font-size: 14px;
-            }
-        }
-    </style>
-</head>
-
-<body>
-    <div class="container">
-        <div class="info-container">
-            <h1 class="info-title">Fancy Vangogh Mental Well-Being Spa</h1>
-            <p class="info-paragraph">Fancy Vangogh Mental Well-Being Spa is an innovative "Organic Human Enhancement" Process, uniquely designed to begin with the enrichment of the five senses. This approach is rooted in the belief that by enhancing sensory experiences, we can unlock new dimensions of human capability and well-being. Through natural and holistic methods, we aim to elevate how individuals interact with their environments, leading to improved mental, emotional, and physical health. This process is not just about enhancement but about transforming everyday experiences into more meaningful and enriched interactions with the world around us.</p>
-        </div>
-        <div class="form-container">
-            <h2 class="form-title">Registrazione</h2>
-            <form id="contactForm">
-                <input type="text" id="firstName" name="firstName" class="form-input" placeholder="Nome" required>
-                <input type="text" id="lastName" name="lastName" class="form-input" placeholder="Cognome" required>
-                <input type="email" id="email" name="email" class="form-input" placeholder="Email" required>
-                <button type="button" id="startButton" class="form-button" disabled>Start</button>
-                <div id="error" class="form-error"></div>
-            </form>
-        </div>
-    </div>
-
-    <script>
-        const firstNameInput = document.getElementById('firstName');
-        const lastNameInput = document.getElementById('lastName');
-        const emailInput = document.getElementById('email');
-        const startButton = document.getElementById('startButton');
-        const errorDiv = document.getElementById('error');
-
-        firstNameInput.addEventListener('input', validateForm);
-        lastNameInput.addEventListener('input', validateForm);
-        emailInput.addEventListener('input', validateForm);
-
-        function validateForm() {
-            const firstName = firstNameInput.value.trim();
-            const lastName = lastNameInput.value.trim();
-            const email = emailInput.value.trim();
-
-            if (firstName && lastName && email) {
-                startButton.removeAttribute('disabled');
-                errorDiv.textContent = '';
-            } else {
-                startButton.setAttribute('disabled', true);
-                errorDiv.textContent = 'Per favore, compila tutti i campi del modulo.';
-            }
+        .sliders-section {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            margin-bottom: 20px;
         }
 
-        function saveToCSV(data) {
-            const csvRow = Object.values(data).join(',') + '\n';
-            const filePath = 'contacts.csv';
-            const blob = new Blob([csvRow], { type: 'text/csv' });
-            const url = URL.createObjectURL(blob);
-            window.webkitRequestFileSystem(window.TEMPORARY, 1024 * 1024, function(fs) {
-                fs.root.getFile(filePath, {create: true}, function(fileEntry) {
-                    fileEntry.createWriter(function(fileWriter) {
-                        fileWriter.seek(fileWriter.length);
-                        fileWriter.write(blob);
-                    });
-                });
-            });
-            setTimeout(() => window.URL.revokeObjectURL(url), 1000);
+        .switch-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 20px;
         }
 
-        startButton.addEventListener('click', function () {
-            const firstName = firstNameInput.value.trim();
-            const lastName = lastNameInput.value.trim();
-            const email = emailInput.value.trim();
+        .label {
+            font-size: 24px;
+            color: #333;
+            margin-top: 10px;
+            font-weight: bold;
+        }
 
-            const contactData = {
-                firstName: firstName,
-                lastName: lastName,
-                email: email
-            };
+        .switch-slider {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+        }
 
-            saveToCSV(contactData);
-            // Redirect to the main interface
-            window.location.href = 'codicerestart.html';
-        });
-    </script>
-</body>
+        .switch-slider input {
+            display: none;
+        }
 
-</html>
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #7e57c2;
+            transition: .4s;
+            border-radius: 34px;
