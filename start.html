@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fancy Van Gogh - Mental Health Spa</title>
+    <title>Fancy Vangogh Mental Well-Being Spa</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Darker+Grotesque:wght@300..900&display=swap" rel="stylesheet">
@@ -12,7 +13,7 @@
             font-family: 'Darker Grotesque', sans-serif;
             margin: 0;
             padding: 0;
-            overflow-x: hidden; /* Evita lo scrolling orizzontale */
+            overflow: hidden;
             background: linear-gradient(-45deg, orange, rgb(82, 140, 255), #e0e0e0, yellow);
             background-size: 400% 400%;
             animation: gradientAnimation 15s ease infinite;
@@ -22,9 +23,11 @@
             0% {
                 background-position: 0% 50%;
             }
+
             50% {
                 background-position: 100% 50%;
             }
+
             100% {
                 background-position: 0% 50%;
             }
@@ -35,45 +38,97 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
-            padding: 20px; /* Aggiunto padding per separare dal bordo del dispositivo */
-            box-sizing: border-box; /* Assicura che il padding non aumenti le dimensioni totali */
-        }
-
-        .info-container {
-            background-color: rgba(255, 255, 255, 0.9); /* Aggiunto sfondo bianco traslucido */
-            border-radius: 10px;
-            padding: 20px;
-            max-width: 600px;
-            width: 100%;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px; /* Aggiunto margine in basso per separare dal modulo */
+            height: 100vh;
         }
 
         .form-container {
-            background-color: rgba(255, 255, 255, 0.9); /* Aggiunto sfondo bianco traslucido */
+            background-color: #ffffff;
             border-radius: 10px;
-            padding: 20px;
+            padding: 40px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             max-width: 400px;
             width: 100%;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
-        /* Altri stili rimossi per brevità */
+        .form-title {
+            text-align: center;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
 
-        @media screen and (max-width: 600px) {
-            .info-container,
-            .form-container {
-                max-width: 90%; /* Riduce la larghezza massima su schermi più piccoli */
-            }
+        .form-input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #cccccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+
+        .form-button {
+            width: 100%;
+            padding: 15px;
+            background-color: #7e57c2;
+            border: none;
+            color: #ffffff;
+            font-size: 18px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .form-button:hover {
+            background-color: #6a4aad;
+        }
+
+        .form-button:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+
+        .form-button:focus {
+            outline: none;
+        }
+
+        .form-error {
+            color: #ff0000;
+            font-size: 14px;
+            margin-top: 5px;
+            text-align: center;
+        }
+
+        .info-container {
+            text-align: center;
+            color: #000000;
+            margin-bottom: 20px;
+            max-width: 600px;
+            width: 100%;
+            border: 2px solid #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
+        }
+
+        .info-title {
+            font-size: 36px;
+            margin-bottom: 10px;
+            line-height: 1.2;
+        }
+
+        .info-paragraph {
+            font-size: 18px;
+            line-height: 1.4;
+            margin-bottom: 15px;
         }
     </style>
 </head>
+
 <body>
     <div class="container">
         <div class="info-container">
-            <h1 class="info-title">Fancy Van Gogh Mental Well-Being Spa</h1>
-            <p class="info-paragraph">Fancy Van Gogh Mental Well-Being Spa is an innovative "Organic Human Enhancement" Process, uniquely designed to begin with the enrichment of the five senses. This approach is rooted in the belief that by enhancing sensory experiences, we can unlock new dimensions of human capability and well-being. Through natural and holistic methods, we aim to elevate how individuals interact with their environments, leading to improved mental, emotional, and physical health. This process is not just about enhancement but about transforming everyday experiences into more meaningful and enriched interactions with the world around us.</p>
+            <h1 class="info-title">Fancy Vangogh Mental Well-Being Spa</h1>
+            <p class="info-paragraph">Fancy Vangogh Mental Well-Being Spa is an innovative "Organic Human Enhancement" Process, uniquely designed to begin with the enrichment of the five senses. This approach is rooted in the belief that by enhancing sensory experiences, we can unlock new dimensions of human capability and well-being. Through natural and holistic methods, we aim to elevate how individuals interact with their environments, leading to improved mental, emotional, and physical health. This process is not just about enhancement but about transforming everyday experiences into more meaningful and enriched interactions with the world around us.</p>
         </div>
         <div class="form-container">
             <h2 class="form-title">Registrazione</h2>
@@ -145,4 +200,5 @@
         });
     </script>
 </body>
+
 </html>
