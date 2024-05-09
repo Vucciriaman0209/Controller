@@ -1,58 +1,192 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <!-- Metatags e stili CSS rimossi per brevità -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fancy Van Gogh - Mental Health Spa</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Darker+Grotesque:wght@300..900&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Darker Grotesque', sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background: linear-gradient(-45deg, orange, rgb(82, 140, 255), #e0e0e0, yellow);
+            background-size: 400% 400%;
+            animation: gradientAnimation 15s ease infinite;
+        }
+
+        @keyframes gradientAnimation {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            padding: 0 20px; /* Aggiunto padding laterale */
+        }
+
+        .info-container {
+            text-align: center;
+            color: #000000;
+            margin-bottom: 20px;
+            max-width: 600px;
+            width: 100%;
+            border: 2px solid #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
+            background-color: rgba(255, 255, 255, 0.8); /* Aggiunto sfondo chiaro */
+        }
+
+        .form-container {
+            background-color: #ffffff;
+            border-radius: 10px;
+            padding: 40px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #cccccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+
+        .form-button {
+            width: 100%;
+            padding: 15px;
+            background-color: #7e57c2;
+            border: none;
+            color: #ffffff;
+            font-size: 18px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .form-error {
+            color: #ff0000;
+            font-size: 14px;
+            margin-top: 5px;
+            text-align: center;
+        }
+
+        /* Media query per dispositivi mobili */
+        @media screen and (max-width: 600px) {
+            .info-container {
+                padding: 10px;
+            }
+
+            .form-container {
+                padding: 20px;
+            }
+
+            .form-input,
+            .form-button {
+                font-size: 14px;
+            }
+        }
+    </style>
 </head>
+
 <body>
     <div class="container">
-        <!-- Contenuto rimane invariato -->
+        <div class="info-container">
+            <h1 class="info-title">Fancy Vangogh Mental Well-Being Spa</h1>
+            <p class="info-paragraph">Fancy Vangogh Mental Well-Being Spa is an innovative "Organic Human Enhancement" Process, uniquely designed to begin with the enrichment of the five senses. This approach is rooted in the belief that by enhancing sensory experiences, we can unlock new dimensions of human capability and well-being. Through natural and holistic methods, we aim to elevate how individuals interact with their environments, leading to improved mental, emotional, and physical health. This process is not just about enhancement but about transforming everyday experiences into more meaningful and enriched interactions with the world around us.</p>
+        </div>
+        <div class="form-container">
+            <h2 class="form-title">Registrazione</h2>
+            <form id="contactForm">
+                <input type="text" id="firstName" name="firstName" class="form-input" placeholder="Nome" required>
+                <input type="text" id="lastName" name="lastName" class="form-input" placeholder="Cognome" required>
+                <input type="email" id="email" name="email" class="form-input" placeholder="Email" required>
+                <button type="button" id="startButton" class="form-button" disabled>Start</button>
+                <div id="error" class="form-error"></div>
+            </form>
+        </div>
     </div>
 
     <script>
-        // Funzione per rilevare se l'utente sta navigando da un dispositivo mobile
-        function isMobileDevice() {
-            return (typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1);
-        }
-
         const firstNameInput = document.getElementById('firstName');
         const lastNameInput = document.getElementById('lastName');
         const emailInput = document.getElementById('email');
         const startButton = document.getElementById('startButton');
         const errorDiv = document.getElementById('error');
 
-        // Rimuovi gli eventi input, verranno gestiti nell'evento submit del modulo
+        firstNameInput.addEventListener('input', validateForm);
+        lastNameInput.addEventListener('input', validateForm);
+        emailInput.addEventListener('input', validateForm);
 
-        function saveToCSV(data) {
-            // Funzione per salvare i dati in un file CSV, rimossa per brevità
-        }
-
-        // Gestisci l'evento submit del modulo
-        document.getElementById('contactForm').addEventListener('submit', function (event) {
-            event.preventDefault(); // Previeni l'invio del modulo
+        function validateForm() {
             const firstName = firstNameInput.value.trim();
             const lastName = lastNameInput.value.trim();
             const email = emailInput.value.trim();
 
             if (firstName && lastName && email) {
-                const contactData = {
-                    firstName: firstName,
-                    lastName: lastName,
-                    email: email
-                };
-
-                saveToCSV(contactData);
-                
-                if (isMobileDevice()) {
-                    // Reindirizza alla pagina desiderata per dispositivi mobili
-                    window.location.href = 'pagina-con-bottoni-mobile.html';
-                } else {
-                    // Reindirizza alla pagina desiderata per altri dispositivi
-                    window.location.href = 'pagina-con-bottoni-desktop.html';
-                }
+                startButton.removeAttribute('disabled');
+                errorDiv.textContent = '';
             } else {
+                startButton.setAttribute('disabled', true);
                 errorDiv.textContent = 'Per favore, compila tutti i campi del modulo.';
             }
+        }
+
+        function saveToCSV(data) {
+            const csvRow = Object.values(data).join(',') + '\n';
+            const filePath = 'contacts.csv';
+            const blob = new Blob([csvRow], { type: 'text/csv' });
+            const url = URL.createObjectURL(blob);
+            window.webkitRequestFileSystem(window.TEMPORARY, 1024 * 1024, function(fs) {
+                fs.root.getFile(filePath, {create: true}, function(fileEntry) {
+                    fileEntry.createWriter(function(fileWriter) {
+                        fileWriter.seek(fileWriter.length);
+                        fileWriter.write(blob);
+                    });
+                });
+            });
+            setTimeout(() => window.URL.revokeObjectURL(url), 1000);
+        }
+
+        startButton.addEventListener('click', function () {
+            const firstName = firstNameInput.value.trim();
+            const lastName = lastNameInput.value.trim();
+            const email = emailInput.value.trim();
+
+            const contactData = {
+                firstName: firstName,
+                lastName: lastName,
+                email: email
+            };
+
+            saveToCSV(contactData);
+            // Redirect to the main interface
+            window.location.href = 'codicerestart.html';
         });
     </script>
 </body>
+
 </html>
