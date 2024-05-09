@@ -4,10 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fancy Vangogh Mental Well-Being Spa</title>
+    <title>Fancy Van Gogh - Mental Health Spa</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Darker+Grotesque:wght@300..900&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
     <style>
         body {
             font-family: 'Darker Grotesque', sans-serif;
@@ -36,157 +38,441 @@
         .container {
             display: flex;
             flex-direction: column;
-            justify-content: center;
             align-items: center;
-            height: 100vh;
+            justify-content: center;
+            min-height: 100vh;
         }
 
-        .form-container {
-            background-color: #ffffff;
-            border-radius: 10px;
-            padding: 40px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            max-width: 400px;
-            width: 100%;
-        }
-
-        .form-title {
-            text-align: center;
-            font-size: 24px;
+        .buttons-section {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
             margin-bottom: 20px;
         }
 
-        .form-input {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 20px;
-            border: 1px solid #cccccc;
-            border-radius: 5px;
-            box-sizing: border-box;
+        .button {
+            padding: 10px 20px;
             font-size: 16px;
-        }
-
-        .form-button {
-            width: 100%;
-            padding: 15px;
-            background-color: #7e57c2;
             border: none;
-            color: #ffffff;
-            font-size: 18px;
-            border-radius: 5px;
+            background-color: #7e57c2;
+            color: #fff;
             cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        .form-button:hover {
-            background-color: #6a4aad;
-        }
-
-        .form-button:disabled {
-            background-color: #cccccc;
-            cursor: not-allowed;
-        }
-
-        .form-button:focus {
-            outline: none;
-        }
-
-        .form-error {
-            color: #ff0000;
-            font-size: 14px;
-            margin-top: 5px;
-            text-align: center;
-        }
-
-        .info-container {
-            text-align: center;
-            color: #ffffff;
+            border-radius: 5px;
             margin-bottom: 20px;
-            max-width: 600px;
+        }
+
+        .restart-button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            background-color: #7e57c2;
+            color: #fff;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .back-button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            background-color: #7e57c2;
+            color: #fff;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        .sliders-section {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .switch-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .label {
+            font-size: 24px;
+            color: #333;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        .switch-slider {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+        }
+
+        .switch-slider input {
+            display: none;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #7e57c2;
+            transition: .4s;
+            border-radius: 34px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked+.slider {
+            background-color: #7e57c2;
+        }
+
+        input:focus+.slider {
+            box-shadow: 0 0 1px #7e57c2;
+        }
+
+        input:checked+.slider:before {
+            transform: translateX(26px);
+        }
+
+        .volume-container {
+            display: none;
+            align-items: center;
+            justify-content: center;
+            margin-top: 10px;
+        }
+
+        .volume-slider {
+            width: 200px;
+            margin: 0 10px;
+        }
+
+        .volume-slider input {
             width: 100%;
-            border: 2px solid #ffffff;
-            padding: 20px;
+            background: linear-gradient(to right, #7e57c2, #7e57c2);
             border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            appearance: none;
         }
 
-        .info-title {
-            font-size: 36px;
-            margin-bottom: 10px;
-            line-height: 1.2;
+        .volume-slider input::-webkit-slider-thumb {
+            background: #7e57c2;
         }
 
-        .info-paragraph {
+        .volume-slider input::-moz-range-thumb {
+            background: #7e57c2;
+        }
+
+        .volume-slider input::-ms-thumb {
+            background: #7e57c2;
+        }
+
+        .volume-buttons button {
+            background-color: transparent;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #333;
+            transition: color 0.3s;
+        }
+
+        .volume-buttons button:hover {
+            color: #7e57c2;
+        }
+
+        .prev-next-buttons {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(126, 87, 194, 0.1);
+            width: 80%;
+            margin-top: 20px;
+            border-radius: 20px;
+            gap: 10%;
+            padding: 3%;
+            margin-bottom: 20px;
+        }
+
+        .prev-next-buttons button {
             font-size: 18px;
-            line-height: 1.4;
-            margin-bottom: 15px;
+            border: none;
+            background-color: transparent;
+            cursor: pointer;
+            transition: color 0.3s;
+            border-radius: 20px;
+            padding: 5px 15px;
+        }
+
+        .prev-next-buttons button:hover {
+            color: #7e57c2;
+        }
+
+        .hide {
+            display: none;
         }
     </style>
 </head>
 
 <body>
+    <button class="back-button" style="position: absolute; top: 10px; left: 10px;">Back</button>
+    <button class="restart-button" style="position: absolute; top: 10px; right: 10px;">Restart</button>
     <div class="container">
-        <div class="info-container">
-            <h1 class="info-title">Fancy Vangogh Mental Well-Being Spa</h1>
-            <p class="info-paragraph">Fancy Vangogh Mental Well-Being Spa is an innovative "Organic Human Enhancement" Process, uniquely designed to begin with the enrichment of the five senses. This approach is rooted in the belief that by enhancing sensory experiences, we can unlock new dimensions of human capability and well-being. Through natural and holistic methods, we aim to elevate how individuals interact with their environments, leading to improved mental, emotional, and physical health. This process is not just about enhancement but about transforming everyday experiences into more meaningful and enriched interactions with the world around us.</p>
+        <div class="switch-container scenarios">
+            <span class="label">Scenarios</span>
+            <label class="switch-slider">
+                <input type="checkbox">
+                <span class="slider"></span>
+            </label>
+            <span class="state-label">From library</span>
+            <span class="state-label hide">Create your own</span>
         </div>
-        <div class="form-container">
-            <h2 class="form-title">Registrazione</h2>
-            <form id="contactForm">
-                <input type="text" id="firstName" name="firstName" class="form-input" placeholder="Nome" required>
-                <input type="text" id="lastName" name="lastName" class="form-input" placeholder="Cognome" required>
-                <input type="email" id="email" name="email" class="form-input" placeholder="Email" required>
-                <button type="button" id="startButton" class="form-button" disabled>Start</button>
-                <div id="error" class="form-error"></div>
-            </form>
+        <div class="prev-next-buttons hide">
+            <button class="prev-button">Previous</button>
+            <button class="next-button">Next</button>
+        </div>
+        <div class="buttons-section">
+            <button class="button">Day/Night</button>
+            <button class="button">Character</button>
+            <button class="button">Sky</button>
+            <button class="button">Background</button>
+            <button class="button">Middle-Ground</button>
+            <button class="button">Buildings</button>
+            <button class="button">Trees</button>
+            <button class="button">Foreground</button>
+        </div>
+        <div class="sliders-section">
+            <input class="balance-slider" type="range" min="0" max="100" value="0" />
+            <input class="balance-slider" type="range" min="0" max="100" value="0" />
+        </div>
+        <div class="switch-container music">
+            <span class="label">Music</span>
+            <label class="switch-slider">
+                <input type="checkbox">
+                <span class="slider"></span>
+            </label>
+            <span class="state-label">Off</span>
+            <span class="state-label hide">On</span>
+            <div class="volume-container">
+                <button class="volume-down">&#9664;</button>
+                <input class="volume-slider" type="range" min="0" max="100" value="50" />
+                <button class="volume-up">&#9654;</button>
+            </div>
         </div>
     </div>
 
     <script>
-        const firstNameInput = document.getElementById('firstName');
-        const lastNameInput = document.getElementById('lastName');
-        const emailInput = document.getElementById('email');
-        const startButton = document.getElementById('startButton');
-        const errorDiv = document.getElementById('error');
+        const socket = new WebSocket('wss://fvg2-dc0b726ecf29.herokuapp.com:443');
 
-        firstNameInput.addEventListener('input', validateForm);
-        lastNameInput.addEventListener('input', validateForm);
-        emailInput.addEventListener('input', validateForm);
+        socket.onopen = function (event) {
+            console.log('WebSocket connection opened');
+        };
 
-        function validateForm() {
-            const firstName = firstNameInput.value.trim();
-            const lastName = lastNameInput.value.trim();
-            const email = emailInput.value.trim();
+        socket.onmessage = function (event) {
+            console.log('Message received:', event.data);
+        };
 
-            if (firstName && lastName && email) {
-                startButton.removeAttribute('disabled');
-                errorDiv.textContent = '';
+        socket.onerror = function (error) {
+            console.error('WebSocket error:', error);
+        };
+
+        socket.onclose = function (event) {
+            console.log('WebSocket connection closed');
+        };
+
+        function sendData(data) {
+            if (socket.readyState === WebSocket.OPEN) {
+                socket.send(JSON.stringify(data));
             } else {
-                startButton.setAttribute('disabled', true);
-                errorDiv.textContent = 'Per favore, compila tutti i campi del modulo.';
+                console.error('WebSocket connection is not open');
             }
         }
 
-        function saveToCSV(data) {
-            const csvRow = Object.values(data).join(',') + '\n';
-            const filePath = 'contacts.csv';
-            const blob = new Blob([csvRow], { type: 'text/csv' });
-            const url = URL.createObjectURL(blob);
-            window.webkitRequestFileSystem(window.TEMPORARY, 1024 * 1024, function(fs) {
-                fs.root.getFile(filePath, {create: true}, function(fileEntry) {
-                    fileEntry.createWriter(function(fileWriter) {
-                        fileWriter.seek(fileWriter.length);
-                        fileWriter.write(blob);
-                    });
-                });
+        const dayNightButton = document.querySelector('.buttons-section .button');
+        if (dayNightButton) {
+            dayNightButton.addEventListener('click', function () {
+                sendData({ keypress: "0" });
             });
         }
 
-        startButton.addEventListener('click', function() {
-            window.location.href = 'codicerestart.html';};
-        startButton.addEventListener('touchstart', function() {
-            window.location.href = 'codicerestart.html';
-        });
+        function handleButtonClick() {
+            const buttons = document.querySelectorAll('.button');
+            const nextButton = document.querySelector('.next-button');
+            const prevButton = document.querySelector('.prev-button');
+            const restartButton = document.querySelector('.restart-button');
+            const backButton = document.querySelector('.back-button');
+
+
+
+            if (buttons.length > 0 && nextButton && prevButton) {
+                buttons.forEach(button => {
+                    button.addEventListener('click', function () {
+                        let keypressValue = 0;
+                        switch (button.textContent.toLowerCase()) {
+                            case 'character':
+                                keypressValue = "6";
+                                break;
+                            case 'sky':
+                                keypressValue = "1";
+                                break;
+                            case 'background':
+                                keypressValue = "2";
+                                break;
+                            case 'middle-ground':
+                                keypressValue = "3";
+                                break;
+                            case 'buildings':
+                                keypressValue = "4";
+                                break;
+                            case 'trees':
+                                keypressValue = "5";
+                                break;
+                            case 'foreground':
+                                keypressValue = "7";
+                                break;
+                           
+                            break;
+                            default:
+                                keypressValue = "9"; // Default value for other buttons
+                        }
+                        sendData({ keypress: keypressValue });
+                    });
+                });
+
+                nextButton.addEventListener('click', function () {
+                    sendData({ keypress: 'j' });
+                });
+
+                prevButton.addEventListener('click', function () {
+                    sendData({ keypress: 'k' });
+                });
+                backButton.addEventListener('click', function () {
+                    sendData({ keypress: 'z' });
+                    window.location.href = 'start.html'; // Replace 'main_interface.html' with the filename of your main interface file
+
+                });
+                restartButton.addEventListener('click', function () {
+                    sendData({ keypress: 'z'});
+                    sendData({ slider1: 50 });
+                    sendData({ slider2: 0 });
+                    sendData({ slider3: 0 });
+                    setTimeout(() => {
+                location.reload();
+            }, 1000);
+                });
+            } else {
+                console.error("Unable to find necessary DOM elements to handle button clicks.");
+            }
+        }
+
+        handleButtonClick();
+
+        function handleScenarioSwitchChange() {
+            const scenarioSwitch = document.querySelector('.switch-container.scenarios input[type="checkbox"]');
+            const prevNextButtons = document.querySelector('.prev-next-buttons');
+            const buttonsSection = document.querySelector('.buttons-section');
+            const slidersSection = document.querySelector('.sliders-section');
+            const stateLabels = document.querySelectorAll('.switch-container.scenarios .state-label');
+
+            if (scenarioSwitch && prevNextButtons && buttonsSection && slidersSection && stateLabels.length === 2) {
+                scenarioSwitch.addEventListener('change', function () {
+                    if (this.checked) {
+                        sendData({ keypress: 'l' }); // Invia "keypress": l quando lo switch è attivo
+                        prevNextButtons.classList.remove('hide');
+                        buttonsSection.classList.add('hide');
+                        slidersSection.classList.add('hide');
+                        stateLabels[0].classList.add('hide');
+                        stateLabels[1].classList.remove('hide');
+                    } else {
+                        sendData({ keypress: 'l' }); // Invia "keypress": l quando lo switch è disattivo
+                        prevNextButtons.classList.add('hide');
+                        buttonsSection.classList.remove('hide');
+                        slidersSection.classList.remove('hide');
+                        stateLabels[0].classList.remove('hide');
+                        stateLabels[1].classList.add('hide');
+                    }
+                });
+            } else {
+                console.error("Unable to find necessary DOM elements to handle scenario switch.");
+            }
+        }
+
+        function handleMusicSwitchChange() {
+            const musicSwitch = document.querySelector('.switch-container.music input[type="checkbox"]');
+            const volumeContainer = document.querySelector('.volume-container');
+            const stateLabels = document.querySelectorAll('.switch-container.music .state-label');
+
+            if (musicSwitch && volumeContainer && stateLabels.length === 2) {
+                musicSwitch.addEventListener('change', function () {
+                    if (this.checked) {
+                        volumeContainer.style.display = 'flex';
+                        stateLabels[0].classList.add('hide');
+                        stateLabels[1].classList.remove('hide');
+                        sendData({ keypress: 'm' }); // Invia "keypress": m quando lo switch della musica è attivo
+                    } else {
+                        volumeContainer.style.display = 'none';
+                        stateLabels[0].classList.remove('hide');
+                        stateLabels[1].classList.add('hide');
+                        sendData({ keypress: 'm' }); // Invia "keypress": m quando lo switch della musica è disattivo
+                    }
+                });
+            } else {
+                console.error("Unable to find necessary DOM elements to handle music switch.");
+            }
+        }
+
+        handleScenarioSwitchChange();
+        handleMusicSwitchChange();
+
+        // Gestione dei tasti volume up e volume down
+        const volumeUpButton = document.querySelector('.volume-up');
+        const volumeDownButton = document.querySelector('.volume-down');
+
+        if (volumeUpButton && volumeDownButton) {
+            volumeUpButton.addEventListener('click', function () {
+                sendData({ keypress: 'n' }); // Invia "keypress": n quando viene premuto il tasto volume up
+            });
+
+            volumeDownButton.addEventListener('click', function () {
+                sendData({ keypress: 'b' }); // Invia "keypress": b quando viene premuto il tasto volume down
+            });
+        } else {
+            console.error("Unable to find volume up and volume down buttons.");
+        }
+
+        // Gestione dello slider sotto la sezione Music
+        const volumeSlider = document.querySelector('.volume-slider');
+        if (volumeSlider) {
+            volumeSlider.addEventListener('input', function () {
+                sendData({ slider1: this.value }); // Invia "slider1": valore quando lo slider del volume è modificato
+            });
+        }
+
+        // Gestione dello slider di bilanciamento
+        const balanceSliders = document.querySelectorAll('.balance-slider');
+        if (balanceSliders.length === 2) {
+            balanceSliders[0].addEventListener('input', function () {
+                sendData({ slider2: this.value }); // Invia "slider2": valore quando lo slider di bilanciamento è modificato
+            });
+
+            balanceSliders[1].addEventListener('input', function () {
+                sendData({ slider3: this.value }); // Invia "slider3": valore quando lo slider di bilanciamento è modificato
+            });
+        }
     </script>
 </body>
 
