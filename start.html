@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fancy Van Gogh - Mental Health Spa</title>
+    <title>Fancy Vangogh Mental Well-Being Spa</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Darker+Grotesque:wght@300..900&display=swap" rel="stylesheet">
@@ -12,24 +13,91 @@
             font-family: 'Darker Grotesque', sans-serif;
             margin: 0;
             padding: 0;
-            overflow: hidden;
             background: linear-gradient(-45deg, orange, rgb(82, 140, 255), #e0e0e0, yellow);
             background-size: 400% 400%;
             animation: gradientAnimation 15s ease infinite;
         }
+
         @keyframes gradientAnimation {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
         }
+
         .container {
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            padding: 0 20px; /* Aggiunto padding laterale */
+            min-height: 100vh;
+            padding: 20px;
         }
+
+        .form-container {
+            background-color: #ffffff;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+        }
+
+        .form-title {
+            text-align: center;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #cccccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+
+        .form-button {
+            width: 100%;
+            padding: 15px;
+            background-color: #7e57c2;
+            border: none;
+            color: #ffffff;
+            font-size: 18px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .form-button:hover {
+            background-color: #6a4aad;
+        }
+
+        .form-button:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+
+        .form-button:focus {
+            outline: none;
+        }
+
+        .form-error {
+            color: #ff0000;
+            font-size: 14px;
+            margin-top: 5px;
+            text-align: center;
+        }
+
         .info-container {
             text-align: center;
             color: #000000;
@@ -40,51 +108,22 @@
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
-            background-color: rgba(255, 255, 255, 0.8); /* Aggiunto sfondo chiaro */
         }
-        .form-container {
-            background-color: #ffffff;
-            border-radius: 10px;
-            padding: 40px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            max-width: 400px;
-            width: 100%;
+
+        .info-title {
+            font-size: 36px;
+            margin-bottom: 10px;
+            line-height: 1.2;
         }
-        .form-input {
-            width: calc(100% - 20px); /* Modificato per considerare il padding */
-            padding: 10px;
-            margin-bottom: 20px;
-            border: 1px solid #cccccc;
-            border-radius: 5px;
-            box-sizing: border-box;
-            font-size: 16px;
-        }
-        .form-button {
-            width: calc(100% - 20px); /* Modificato per considerare il padding */
-            padding: 15px;
-            background-color: #7e57c2;
-            border: none;
-            color: #ffffff;
+
+        .info-paragraph {
             font-size: 18px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-        .form-error {
-            color: #ff0000;
-            font-size: 14px;
-            margin-top: 5px;
-            text-align: center;
-        }
-        /* Media query per dispositivi mobili */
-        @media screen and (max-width: 600px) {
-            .info-container { padding: 10px; }
-            .form-container { padding: 20px; }
-            .form-input, .form-button { font-size: 14px; }
-            .start-button-desktop { display: none; }
+            line-height: 1.4;
+            margin-bottom: 15px;
         }
     </style>
 </head>
+
 <body>
     <div class="container">
         <div class="info-container">
@@ -97,36 +136,37 @@
                 <input type="text" id="firstName" name="firstName" class="form-input" placeholder="Nome" required>
                 <input type="text" id="lastName" name="lastName" class="form-input" placeholder="Cognome" required>
                 <input type="email" id="email" name="email" class="form-input" placeholder="Email" required>
-                <button type="button" id="startButton" class="form-button start-button-desktop" disabled>Start</button>
+                <button type="button" id="startButton" class="form-button" disabled>Start</button>
                 <div id="error" class="form-error"></div>
             </form>
-            <button type="button" id="startButtonMobile" class="form-button" disabled>Start</button>
         </div>
     </div>
+
     <script>
         const firstNameInput = document.getElementById('firstName');
         const lastNameInput = document.getElementById('lastName');
         const emailInput = document.getElementById('email');
-        const startButtonDesktop = document.querySelector('.start-button-desktop');
-        const startButtonMobile = document.getElementById('startButtonMobile');
+        const startButton = document.getElementById('startButton');
         const errorDiv = document.getElementById('error');
+
         firstNameInput.addEventListener('input', validateForm);
         lastNameInput.addEventListener('input', validateForm);
         emailInput.addEventListener('input', validateForm);
+
         function validateForm() {
             const firstName = firstNameInput.value.trim();
             const lastName = lastNameInput.value.trim();
             const email = emailInput.value.trim();
+
             if (firstName && lastName && email) {
-                startButtonDesktop.removeAttribute('disabled');
-                startButtonMobile.removeAttribute('disabled');
+                startButton.removeAttribute('disabled');
                 errorDiv.textContent = '';
             } else {
-                startButtonDesktop.setAttribute('disabled', true);
-                startButtonMobile.setAttribute('disabled', true);
+                startButton.setAttribute('disabled', true);
                 errorDiv.textContent = 'Per favore, compila tutti i campi del modulo.';
             }
         }
+
         function saveToCSV(data) {
             const csvRow = Object.values(data).join(',') + '\n';
             const filePath = 'contacts.csv';
@@ -142,26 +182,23 @@
             });
             setTimeout(() => window.URL.revokeObjectURL(url), 1000);
         }
-        startButtonDesktop.addEventListener('click', function() {
-            const formData = {
-                firstName: firstNameInput.value,
-                lastName: lastNameInput.value,
-                email: emailInput.value
+
+        startButton.addEventListener('click', function () {
+            const firstName = firstNameInput.value.trim();
+            const lastName = lastNameInput.value.trim();
+            const email = emailInput.value.trim();
+
+            const contactData = {
+                firstName: firstName,
+                lastName: lastName,
+                email: email
             };
-            saveToCSV(formData);
-            alert('I dati sono stati salvati!');
-            // Eseguire qui il reindirizzamento verso l'interfaccia desiderata
-        });
-        startButtonMobile.addEventListener('click', function() {
-            const formData = {
-                firstName: firstNameInput.value,
-                lastName: lastNameInput.value,
-                email: emailInput.value
-            };
-            saveToCSV(formData);
-            alert('I dati sono stati salvati!');
-            // Eseguire qui il reindirizzamento verso l'interfaccia desiderata
+
+            saveToCSV(contactData);
+            // Redirect to the main interface
+            window.location.href = 'codicerestart.html';
         });
     </script>
 </body>
+
 </html>
