@@ -417,9 +417,26 @@
             <span class="state-label">Off</span>
             <span class="state-label hide">On</span>
             <div class="volume-container">
-                <button class="volume-down">&#9664;</button>
                 <input class="volume-slider" type="range" min="0" max="100" value="50" />
-                <button class="volume-up">&#9654;</button>
+                <div class="dropdown-container">
+                    <label for="foregroundDropdown">Song:</label>
+                    <select id="musicDropdown" class="button-dropdown">
+                        <option value="1" selected> 01_The View From Here</option>
+                        <option value="2">02_Oh So Many Stars</option>
+                        <option value="3">03_Odiles Garden</option>
+                        <option value="4">04_Stepping Stones Under Water</option>
+                        <option value="5">05_Lone Tree</option>
+                        <option value="6">06_Rise</option>
+                        <option value="7">07_A Beacon To Guide You Home</option>
+                        <option value="8">08_Medano Creek</option>
+                        <option value="9">09_The Embrace</option>
+                        <option value="10">10_Van Gogh Sky</option>
+                        <option value="11">11_The Parting Glass</option>
+                        <option value="12">12_Aerial</option>
+
+
+                    </select>
+                </div>
             </div>
         </div>
     </div>
@@ -453,7 +470,9 @@ function sendData(data) {
 
 document.querySelector('.restart-button').addEventListener('click', function() {
     sendData({ keypress: 'z' });
-    sendData({ index : 8, music: 0 }); // Send music state
+    sendData({ index: 8, music: 1 }); // Send music state
+    sendData({ index: 9, music: 0 }); // Send music state
+
     sendData({ index: 0, value: 0 });
     sendData({ index: 1, value: 1 });
     sendData({ index: 2, value: 1 });
@@ -462,12 +481,16 @@ document.querySelector('.restart-button').addEventListener('click', function() {
     sendData({ index: 5, value: 1 });
     sendData({ index: 6, value: 1 });
     sendData({ index: 7, value: 1 });
+    sendData({ index: 9, value: 1 });
+
     location.reload(); // Reload the page
 });
 
 document.querySelector('.back-button').addEventListener('click', function() {
     sendData({ keypress: 'z' });
-    sendData({ index : 8, music: 0 }); // Send music state
+    sendData({ index: 8, music: 1 }); // Send music state
+    sendData({ index: 9, music: 0 }); // Send music state
+
     sendData({ index: 0, value: 1 });
     sendData({ index: 1, value: 1 });
     sendData({ index: 2, value: 1 });
@@ -476,6 +499,7 @@ document.querySelector('.back-button').addEventListener('click', function() {
     sendData({ index: 5, value: 1 });
     sendData({ index: 6, value: 1 });
     sendData({ index: 7, value: 1 });
+    sendData({ index: 9, value: 1 });
 
     window.location.href = 'start.html'; // Navigate to start.html
 
@@ -534,7 +558,7 @@ function handleMusicSwitchChange() {
     if (musicSwitch && volumeContainer && stateLabels.length === 2) {
         musicSwitch.addEventListener('change', function () {
             const isChecked = this.checked;
-            sendData({ index : 8, music: isChecked ? 1 : 0 }); // Send music state
+            sendData({ index : 9, music: isChecked ? 1 : 0 }); // Send music state
             if (isChecked) {
                 volumeContainer.style.display = 'flex';
                 stateLabels[0].classList.add('hide');
